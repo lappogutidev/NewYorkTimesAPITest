@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>New York Times Articles</title>
+        <script src="js/jquery-3.1.1.min.js"></script>
+        <script src="js/script.js"></script>
+        <script>
+        // Built by LucyBot. www.lucybot.com
+        var url = "https://api.nytimes.com/svc/search/v2/articlesearch.json";
+        url += '?' + $.param({
+            'api-key': "3e0da32a511e4dc69b522f21d948fd85",
+            'q': "Trump",
+            'begin_date': "20160601",
+            'hl': "true",
+            'page': 1
+        });
+        $.ajax({
+            url: url,
+            method: 'GET',
+        }).done(function(result) {
+            console.log(result);
+            var legnth = result.response.docs.length;
+            for (i = 0; i < 1; i++) {
+                console.log("Publication date:", result.response.docs[i].pub_date);
+                console.log("\n");
+            }
+            // $(result.response.docs).each(function() {
+            //   $(this).append("<p>Here's a note</p>");
+            // });
+        }).fail(function(err) {
+            throw err;
+        });
+</script>
+    </head>
+    <body>
+
+    </body>
+</html>
